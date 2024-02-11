@@ -32,10 +32,10 @@ class twoActivity : AppCompatActivity() {
         var btnLlennarCiudad= binding.btnDbcity
         btnLlennarCiudad.setOnClickListener {
 
-            // Crea un Intent para iniciar ActivityB
+
             val intent = Intent(this, MainActivity::class.java)
 
-            // Inicia ActivityB utilizando el Intent
+
             startActivity(intent)
 
 

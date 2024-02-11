@@ -11,11 +11,15 @@ class BdHelper(
     override fun onCreate(db: SQLiteDatabase?) {
          db?.execSQL(Constantes.TABLA)
          db?.execSQL(Constantes.DATA)
+
+        db?.execSQL(Constantes.PLACES)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db?.execSQL("DROP TABLE IF EXISTS ciudad")
         db?.execSQL("DROP TABLE IF EXISTS Data")
+
+
         onCreate(db)
     }
 }
