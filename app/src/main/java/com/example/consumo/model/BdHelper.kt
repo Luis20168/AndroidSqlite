@@ -19,6 +19,8 @@ class BdHelper(
         db?.execSQL("DROP TABLE IF EXISTS ciudad")
         db?.execSQL("DROP TABLE IF EXISTS Data")
 
+        db?.execSQL("DROP TABLE IF EXISTS places")
+
 
         onCreate(db)
     }

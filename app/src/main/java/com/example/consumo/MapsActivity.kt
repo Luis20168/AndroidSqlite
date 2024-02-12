@@ -1,6 +1,7 @@
 package com.example.consumo
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -22,11 +23,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private var currentMarker: Marker? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -67,6 +70,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     intent.putExtra("longitude", -76.56176399432523)
                     intent.putExtra("info", "El SENA en Popayán es una institución educativa que ofrece formación técnica y tecnológica en diversas áreas. Es un centro de aprendizaje que contribuye al desarrollo socioeconómico de la región mediante programas de educación y capacitación profesional.")
 
+                    mediaPlayer?.release() // Liberar el reproductor de medios anterior si existe
+                    mediaPlayer = MediaPlayer.create(this, R.raw.sena)
+                    mediaPlayer?.start()
                     startActivity(intent)
                 }
 
@@ -79,7 +85,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     intent.putExtra("longitude", -76.60014311631677)
                     intent.putExtra("img", R.drawable.morro)
                     intent.putExtra("info","El Morro de Popayán es una colina emblemática en la ciudad de Popayán, Colombia. Conocido también como \"Cerro de la Tulia\" o \"Cerro de las Tres Cruces\", ofrece una vista panorámica de la ciudad y alrededores desde su cima, donde se encuentran tres cruces blancas. Es un lugar de interés histórico, religioso y turístico, frecuentado por locales y visitantes para actividades al aire libre y disfrutar de su belleza natural.")
-
+                    mediaPlayer?.release() // Liberar el reproductor de medios anterior si existe
+                    mediaPlayer = MediaPlayer.create(this, R.raw.morro)
+                    mediaPlayer?.start()
                     startActivity(intent)
                 }
 
@@ -92,7 +100,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     intent.putExtra("img", R.drawable.parque)
                     intent.putExtra("info", "El Parque Caldas es un espacio público en el centro histórico de Popayán, Colombia. Es conocido por su arquitectura colonial, áreas verdes y estatua de Francisco José de Caldas. Es un lugar popular para actividades recreativas y culturales en la ciudad.")
-
+                    mediaPlayer?.release() // Liberar el reproductor de medios anterior si existe
+                    mediaPlayer = MediaPlayer.create(this, R.raw.caldas)
+                    mediaPlayer?.start()
                     startActivity(intent)
 
 
@@ -107,7 +117,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     intent.putExtra("longitude", -80.19718931058006 )
 
                     intent.putExtra("img", R.drawable.miami)
+
                     intent.putExtra("info", "Miami es una ciudad ubicada en Florida, Estados Unidos, famosa por sus playas, clima cálido y diversidad cultural. Es un importante centro financiero y de entretenimiento con una vibrante vida nocturna y una escena artística reconocida.")
+                    mediaPlayer?.release() // Liberar el reproductor de medios anterior si existe
+                    mediaPlayer = MediaPlayer.create(this, R.raw.miami)
+                    mediaPlayer?.start()
                     startActivity(intent)
 
 
