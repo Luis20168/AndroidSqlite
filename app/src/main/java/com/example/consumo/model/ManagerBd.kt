@@ -71,6 +71,39 @@ data class ManagerBd(val context: Context) {
         return resul
 
     }
+
+
+    fun getData():ArrayList<Ciudad>{
+        openBdRd()
+        var cursor= bd.rawQuery(Constantes.obtener,null)
+
+
+        val  ciudadList=ArrayList<Ciudad>()
+        if (cursor.moveToFirst()){
+            //Se verifica si el cursor se mueve
+            do {
+                //se aamcenan en las variles lo que tiene en la fila uno
+
+                val idCiudad=cursor.getColumnIndex("cod")
+                val nombreCiudad=cursor.getColumnIndex("nombre")
+                val codedepCiudad=cursor.getColumnIndex("codedep")
+
+                //Paso los valores obteidos del cursos a mi objet ciudad
+                val ciudad =Ciudad(idCiudad,nombreCiudad.toString(),codedepCiudad)
+
+                //agrego miobjeto ciudad a mi arraylist
+                ciudadList.add(ciudad)
+
+
+
+            }while (cursor.moveToNext())  //el siclo se hace hasta que el curso se nueva a la siguiente posicion
+
+        }
+
+
+        return ciudadList
+
+    }
 }
 
 

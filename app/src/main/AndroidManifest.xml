@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Consumo"
         tools:targetApi="31">
         <activity
+            android:name=".listarDatosActivity"
+            android:exported="false" />
+        <activity
             android:name=".lugares.LugarActivity"
             android:exported="false" />
         <activity
