@@ -1,5 +1,6 @@
 package com.example.consumo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,15 @@ class MainActivity : AppCompatActivity() {
             val manager = ManagerBd(this)
             manager.insertData(cod, nombre, codedep)
             Toast.makeText(this, "Base de Datos Creada", Toast.LENGTH_SHORT).show()
+
+            binding.btnDatos.setOnClickListener{
+                var intent= Intent(this, listarDatosActivity::class.java)
+                startActivity(intent)
+
+
+
+
+            }
         }
 
 

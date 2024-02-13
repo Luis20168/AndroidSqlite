@@ -2,6 +2,7 @@ package com.example.consumo.model
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 
 data class ManagerBd(val context: Context) {
@@ -73,36 +74,30 @@ data class ManagerBd(val context: Context) {
     }
 
 
-    fun getData():ArrayList<Ciudad>{
+    fun getData(): ArrayList<Ciudad> {
         openBdRd()
-        var cursor= bd.rawQuery(Constantes.obtener,null)
+        val ciudadList = ArrayList<Ciudad>()
+        val cursor: Cursor? = bd.rawQuery(Constantes.obtener, null)
 
-
-        val  ciudadList=ArrayList<Ciudad>()
-        if (cursor.moveToFirst()){
-            //Se verifica si el cursor se mueve
+        if (cursor != null && cursor.moveToFirst()) {
             do {
-                //se aamcenan en las variles lo que tiene en la fila uno
+                val idCiudadIndex = cursor.getColumnIndex("cod")
+                val nombreCiudadIndex = cursor.getColumnIndex("nombre")
+                val codedepCiudadIndex = cursor.getColumnIndex("codedep")
 
-                val idCiudad=cursor.getColumnIndex("cod")
-                val nombreCiudad=cursor.getColumnIndex("nombre")
-                val codedepCiudad=cursor.getColumnIndex("codedep")
+                val idCiudad: Int = cursor.getInt(idCiudadIndex)
+                val nombreCiudad: String = cursor.getString(nombreCiudadIndex)
+                val codedepCiudad: Int = cursor.getInt(codedepCiudadIndex)
 
-                //Paso los valores obteidos del cursos a mi objet ciudad
-                val ciudad =Ciudad(idCiudad,nombreCiudad.toString(),codedepCiudad)
-
-                //agrego miobjeto ciudad a mi arraylist
+                val ciudad = Ciudad(idCiudad, nombreCiudad, codedepCiudad)
                 ciudadList.add(ciudad)
 
-
-
-            }while (cursor.moveToNext())  //el siclo se hace hasta que el curso se nueva a la siguiente posicion
-
+            } while (cursor.moveToNext())
         }
 
+        cursor?.close() // Cerrar el cursor después de su uso
 
         return ciudadList
-
     }
 }
 
